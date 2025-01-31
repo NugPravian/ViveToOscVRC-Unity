@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class headTracker : MonoBehaviour
 {
+    public GameObject panel;
+    public GameObject chestTracker;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,6 @@ public class headTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.localPosition = chestTracker.GetComponent<Transform>().position + panel.GetComponent<adjustOffset>().offset;        
     }
 }
