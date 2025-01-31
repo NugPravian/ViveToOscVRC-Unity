@@ -14,7 +14,7 @@ public class OSC_Service : MonoBehaviour
 
     [SerializeField] private float TickDelay = 0.1f;
     [SerializeField] float lowestPoint = 0; // Used for floor-offset (Maybe auto calibrated ¯\_(ツ)_/¯)
-
+    public Vector3 chestTrackerPosition;
     private OscSender sender;
 
     private void Start()
@@ -36,12 +36,6 @@ public class OSC_Service : MonoBehaviour
     {
         while (true)
         {
-            // If tracker flies away, then reset floor offset
-            if (Mathf.Abs(lowestPoint) > 2)
-            {
-                lowestPoint = 0;
-            }
-
             for (uint i = 0; i < OpenVR.k_unMaxTrackedDeviceCount; i++)
             {
                 var deviceClass = OpenVR_Service.vrSystem.GetTrackedDeviceClass(i);
@@ -53,7 +47,10 @@ public class OSC_Service : MonoBehaviour
 
                 Vector3 pos = trackerInfo.Value.Position;
                 Vector3 rot = trackerInfo.Value.EulerRotation;
-
+                if (i == 1)
+                {
+                    chestTrackerPosition = pos;
+                }
                 if (lowestPoint > pos.y)
                 {
                     lowestPoint = pos.y;
