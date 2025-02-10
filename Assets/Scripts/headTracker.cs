@@ -17,6 +17,6 @@ public class headTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = chestTracker.GetComponent<Transform>().position + panel.GetComponent<adjustOffset>().offset;        
+        transform.localPosition = panel.GetComponent<adjustOffset>().offset;        
     }
 }
