@@ -9,12 +9,15 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class OSC_Service : MonoBehaviour
 {
-    [SerializeField] private string Ip_address = "192.168.0.37";
+    [SerializeField] private string Ip_address = "127.0.0.1";
     [SerializeField] private int port = 9000;
 
     [SerializeField] private float TickDelay = 0.1f;
     [SerializeField] float lowestPoint = 0; // Used for floor-offset (Maybe auto calibrated ¯\_(ツ)_/¯)
     public Vector3 chestTrackerPosition;
+    public Vector3 headTrackerPosition;
+
+    public GameObject headTracker;
     private OscSender sender;
 
     private void Start()
@@ -47,9 +50,12 @@ public class OSC_Service : MonoBehaviour
 
                 Vector3 pos = trackerInfo.Value.Position;
                 Vector3 rot = trackerInfo.Value.EulerRotation;
+                //Debug.Log(i);
                 if (i == 1)
                 {
                     chestTrackerPosition = pos;
+                    Debug.Log(pos);
+
                 }
                 if (lowestPoint > pos.y)
                 {
@@ -63,6 +69,10 @@ public class OSC_Service : MonoBehaviour
 
                 sender.Send(new OscMessage($"/tracking/trackers/{i}/position", pos.x, pos.y, pos.z));
                 sender.Send(new OscMessage($"/tracking/trackers/{i}/rotation", rot.x, rot.y, rot.z));
+                
+                headTrackerPosition = headTracker.GetComponent<Transform>().position;
+                sender.Send(new OscMessage($"/tracking/trackers/head/position", headTrackerPosition.x, headTrackerPosition.y, headTrackerPosition.z));
+
             }
 
             yield return new WaitForSecondsRealtime(TickDelay);

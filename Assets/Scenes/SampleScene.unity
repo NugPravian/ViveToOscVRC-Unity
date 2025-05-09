@@ -1777,11 +1777,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412d285ca3fd84f4591be73efccd4ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ip_address: 192.168.0.37
+  Ip_address: 127.0.0.1
   port: 9000
   TickDelay: 0.01
   lowestPoint: 0
   chestTrackerPosition: {x: 0, y: 0, z: 0}
+  headTrackerPosition: {x: 0, y: 0, z: 0}
+  headTracker: {fileID: 970376445}
 --- !u!4 &878120841
 Transform:
   m_ObjectHideFlags: 0
