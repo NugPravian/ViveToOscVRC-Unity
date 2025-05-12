@@ -9,7 +9,7 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class OSC_Service : MonoBehaviour
 {
-    [SerializeField] private string Ip_address = "127.0.0.1";
+    [SerializeField] private string Ip_address = "192.168.178.198";
     [SerializeField] private int port = 9000;
 
     [SerializeField] private float TickDelay = 0.1f;
