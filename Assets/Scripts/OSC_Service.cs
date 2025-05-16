@@ -6,6 +6,7 @@ using UnityEngine;
 using Rug.Osc;
 using Valve.VR;
 using UnityEngine.Rendering.VirtualTexturing;
+using TMPro;
 
 public class OSC_Service : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class OSC_Service : MonoBehaviour
     [SerializeField] float lowestPoint = 0; // Used for floor-offset (Maybe auto calibrated ¯\_(ツ)_/¯)
     public Vector3 chestTrackerPosition;
     public Vector3 headTrackerPosition;
+    public TMP_Text headTracker_Position;
 
     public GameObject headTracker;
     private OscSender sender;
@@ -54,7 +56,8 @@ public class OSC_Service : MonoBehaviour
                 if (i == 1)
                 {
                     chestTrackerPosition = pos;
-                    Debug.Log(pos);
+                    headTracker_Position.text = pos.ToString();
+		    Debug.Log(pos);
 
                 }
                 if (lowestPoint > pos.y)
