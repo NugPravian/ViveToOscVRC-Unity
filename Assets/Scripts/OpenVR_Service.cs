@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using Valve.VR;
+using TMPro;
 
 public class OpenVR_Service : MonoBehaviour
 {
     public static CVRSystem vrSystem = default!;
     private GameObject DummyObject; // Used for getting the correct rotation of the tracker
+    public TMP_Text message;
 
     void Start()
     {
@@ -61,7 +63,8 @@ public class OpenVR_Service : MonoBehaviour
 
         if (error != EVRInitError.None)
         {
-            throw new Exception("Unable to initialize OpenVR: " + error.ToString());
+            //message.text = error.ToString();
+	    throw new Exception("Unable to initialize OpenVR: " + error.ToString());
         }
     }
 }
